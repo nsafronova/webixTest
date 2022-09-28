@@ -1,0 +1,26 @@
+.header {
+   background-color: rgb(83, 98, 112);
+}
+
+.label .webix_el_box {
+   color: white;
+}
+
+.profile_btn .webix_button,
+.profile_btn .webix_button .wxi-user {
+   color: white;
+}
+
+
+.connect_btn .webix_button,
+.connect_btn .webix_button .wxi-check {
+   color: rgb(125, 160, 64);
+}
+
+.copyright {
+   text-align: center
+}
+
+.sidebar {
+   background-color: rgb(234, 234, 234);
+}

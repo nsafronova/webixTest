@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
+   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
+   <link rel="stylesheet" href="/style.css">
+   <script src="/testdata.js"></script>
+</head>
+<body>
+   <script type="text/javascript" charset="utf-8">
+   
+var label = { 
+   view:"label", 
+   label: "My App", 
+   css: "label"
+};
+
+var btn = {
+   view:"button",
+			type:"icon", icon:"wxi-user", label:"Profile",
+         align: 'right',
+			width:100,
+         css: 'webix_transparent profile_btn'
+}
+
+var row1 = { 
+   css: "header",
+cols:[ 
+   label,
+   btn
+]
+};
+
+var sidebar = {
+   minHeight: 300,
+   css: "sidebar",
+	view:"sidebar",
+	width:200,
+   minHeight: 260,
+	scroll:false,
+	data:[ "Dashboard", "Users", "Products", "Locations" ]
+}
+
+var connected = {
+   view:"button", 
+   type:"icon", 
+   icon:"wxi-check", 
+   label:"Connected", 
+   css: "webix_transparent connect_btn",
+   maxHeight: 20
+}
+
+var side = {
+   css: "sidebar",
+   rows:[
+	   sidebar,
+      connected
+	]
+};
+
+var database = {
+   view:"datatable",
+	data: small_film_set,
+	autoConfig:true,
+	autoheight:true,
+}
+
+
+var form = {
+    view:"form",
+    width: 280,
+    elements:[
+      { view:"fieldset", label:"Edit films", body:{
+        rows:[
+        { view:"text", label:"Title"},
+            { view:"text", label:"Year"},
+            { view:"text", label:"Rating"},
+            { view:"text", label:"Votes"}
+        ]
+      }},
+      { cols:[
+        	{ view:"button", label:"Add new" , type:"form", css: 'webix_primary'},
+        	{ view:"button", label:"Clear" }
+      ]}
+  ]
+}
+
+var row2 = { 
+    cols:[ 
+       side,
+       { view:"resizer"},
+       database,
+       form
+    ]
+};
+
+var row3 = {
+   template:`<div class="copyright"> The software is provided by <a href="https://webix.com/" target="_blank">webix.com.</a> All rights are reserved. (c) </div>`,
+   align:"center",
+   height: 20
+}
+
+webix.ui({
+    rows:[
+        row1,
+        row2,
+        row3
+    ]
+});
+
+   </script>
+</body>
+</html>
