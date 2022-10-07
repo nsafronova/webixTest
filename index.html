@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
-  <link rel="stylesheet" href="/style.css">
-  <script src="/testdata.js"></script>
-  <script src="/products.js"></script>
-  <script src="/users.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./testdata.js"></script>
+  <script src="./products.js"></script>
+  <script src="./users.js"></script>
 </head>
 
 <body>
@@ -79,6 +79,7 @@
       autoheight: true,
       scroll: 'auto',
       editable: true,
+      hover: "myhover",
       columns: [
         { id: "rank", header: "", css: "rank", width: 30, sort: "int" },
         { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
