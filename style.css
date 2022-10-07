@@ -1,0 +1,18 @@
+.connect_label .webix_el_box,
+      .connect_label .wxi-check {
+         color: rgb(125, 160, 64);
+      }
+    
+      .copyright {
+         text-align: center
+      }
+    
+      .sidebar {
+         background-color: rgb(234, 234, 234);
+      }
+      
+      .sidebar .webix_tree_item:hover,
+      .sidebar .webix_tree_item.webix_selected,
+      .sidebar .webix_tree_item.webix_selected:active {
+        background-color: rgb(225, 225, 225);
+      }
