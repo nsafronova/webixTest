@@ -4,113 +4,190 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
+   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script> 
    <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
-   <link rel="stylesheet" href="/style.css">
+   <!-- <link rel="stylesheet" href="/style.css"> -->
+   <!-- <link rel="stylesheet" href="/codebase/webix.css"> -->
+   <!-- <script src="/codebase/webix.js"></script> -->
    <script src="/testdata.js"></script>
+   <title>WebixLesson</title>
 </head>
 <body>
-   <script type="text/javascript" charset="utf-8">
-   
-var label = { 
-   view:"label", 
-   label: "My App", 
-   css: "label"
-};
+   <script>
+    let label = { 
+    view:"label", 
+    label: "My App", 
+  };
+  
+  let btn = {
+    view:"button",
+    type:"icon", icon:"wxi-user", label:"Profile",
+    width:100,
+    css: 'webix_transparent',
+    popup: 'my_pop'
+  }
+  
 
-var btn = {
-   view:"button",
-			type:"icon", icon:"wxi-user", label:"Profile",
-         align: 'right',
-			width:100,
-         css: 'webix_transparent profile_btn'
-}
-
-var row1 = { 
-   css: "header",
-cols:[ 
-   label,
-   btn
-]
-};
-
-var sidebar = {
-   minHeight: 300,
-   css: "sidebar",
-	view:"sidebar",
-	width:200,
-   minHeight: 260,
-	scroll:false,
-	data:[ "Dashboard", "Users", "Products", "Locations" ]
-}
-
-var connected = {
-   view:"button", 
-   type:"icon", 
-   icon:"wxi-check", 
-   label:"Connected", 
-   css: "webix_transparent connect_btn",
-   maxHeight: 20
-}
-
-var side = {
-   css: "sidebar",
-   rows:[
-	   sidebar,
+  let row1 = { 
+    view: "toolbar",
+    css: "webix_dark",
+    paddingX: 10,
+    cols:[ 
+      label,
+      btn
+    ]
+  };
+  
+  let sidebar = {
+    minHeight: 300,
+    css: "sidebar",
+    view:"sidebar",
+    width:200,
+    minHeight: 260,
+    scroll:false,
+    data:[ "Dashboard", "Users", "Products", "Locations" ],
+    borderless: true,
+  }
+  
+  let connected = {
+    view:"label", 
+    align: "center",
+    label:"<span class='webix_icon wxi wxi-check'></span>Connected", 
+    css: "connect_label",
+  }
+  
+  let side = {
+    css: "sidebar",
+    rows:[
+      sidebar,
       connected
-	]
-};
-
-var database = {
+    ]
+  };
+  
+  let datatable = {
+   id: "mydata",
    view:"datatable",
-	data: small_film_set,
-	autoConfig:true,
-	autoheight:true,
-}
-
-
-var form = {
-    view:"form",
-    width: 280,
-    elements:[
-      { view:"fieldset", label:"Edit films", body:{
+   data: small_film_set,
+   autoConfig:true,
+   autoheight:true
+   
+  }
+  
+  let form = { 
+  view: "form", 
+  id: "myform", 
+  width: 300, 
+  elements:[
+      { view:"fieldset", label:"Edit films",
+       body:{
         rows:[
-        { view:"text", label:"Title"},
-            { view:"text", label:"Year"},
-            { view:"text", label:"Rating"},
-            { view:"text", label:"Votes"}
+          { view:"text", label:"Title", name:'title', invalidMessage: 'Title is empty'},
+          { view:"text", label:"Year", name:'year', invalidMessage: 'Incorrect year'},
+          { view:"text", label:"Rating", name:'rating', invalidMessage: 'Rating is empty'},
+          { view:"text", label:"Votes", name:'votes', invalidMessage: 'Incorrect votes'}
         ]
       }},
       { cols:[
-        	{ view:"button", label:"Add new" , type:"form", css: 'webix_primary'},
-        	{ view:"button", label:"Clear" }
-      ]}
-  ]
-}
-
-var row2 = { 
-    cols:[ 
-       side,
-       { view:"resizer"},
-       database,
-       form
-    ]
+        { view:"button", value:"Add new" , css: 'webix_primary', click:function(){
+      if($$("myform").validate()){
+          let item = $$("myform").getValues();
+          $$("mydata").add(item);
+          webix.message({type: 'success', text:"Database updated", expire:1000})
+      }
+    }},
+        { view:"button", value:"Clear",  click:function(){
+         webix.confirm({
+            title:"Warning!",
+            type:"confirm-warning",
+            text:"You are about to agree. Are you sure?"
+                })
+                .then(function(){
+                 $$('myform').clear()
+                 $$("myform").clearValidation(); 
+                })
+                .fail(function(){
+            webix.message("Oops! Something doesn't work");
+        })
+              
+            }
+         }
+      ],  
+   }
+],
+  rules:{
+  	title: webix.rules.isNotEmpty,
+   year: function(value){
+        return value>1970&&value<2022;
+      },
+   votes: function(value){
+      return value<100000;
+      },
+   rating: webix.rules.isNotEmpty&&function(value){
+      return value>0;
+      }
+ }
 };
+  
 
-var row3 = {
-   template:`<div class="copyright"> The software is provided by <a href="https://webix.com/" target="_blank">webix.com.</a> All rights are reserved. (c) </div>`,
-   align:"center",
-   height: 20
-}
-
-webix.ui({
-    rows:[
-        row1,
-        row2,
-        row3
+  let row2 = { 
+    cols:[ 
+      side,
+      { view:"resizer"},
+      datatable,
+      form
     ]
+  };
+  
+  let row3 = {
+    template:`<div class="copyright"> The software is provided by <a href="https://webix.com/" target="_blank">webix.com.</a> All rights are reserved. (c) </div>`,
+    align:"center",
+    height: 30
+  }
+  
+  webix.ui({
+    view:"popup",
+    id:"my_pop",
+   
+    width: 300,
+    body:{
+      view: "list",
+      data:[
+      {id:"1", name:"Settings"},
+      {id:"2", name:"Log Out"},
+    ],
+    template:"#name#",
+    autoheight:true,
+    select:true
+    }
 });
 
-   </script>
+  webix.ui({
+    rows:[
+      row1,
+      row2,
+      row3
+    ]
+  });
+   </script> 
+   <style>
+      .connect_label .webix_el_box,
+      .connect_label .wxi-check {
+         color: rgb(125, 160, 64);
+      }
+    
+      .copyright {
+         text-align: center
+      }
+    
+      .sidebar {
+         background-color: rgb(234, 234, 234);
+      }
+      
+      .sidebar .webix_tree_item:hover,
+      .sidebar .webix_tree_item.webix_selected,
+      .sidebar .webix_tree_item.webix_selected:active {
+        background-color: rgb(225, 225, 225);
+      }
+   </style>
 </body>
 </html>
