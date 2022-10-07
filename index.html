@@ -38,7 +38,6 @@
     };
 
     const sidebar = {
-      minHeight: 300,
       css: "sidebar",
       view: "sidebar",
       width: 200,
@@ -67,8 +66,8 @@
       id: "mydata",
       view: "datatable",
       data: small_film_set,
-      autoConfig: true,
-      autoheight: true
+      autoConfig: true
+
 
     }
 
@@ -113,9 +112,9 @@
                   .fail(function () {
                     webix.message("Oops! Something doesn't work");
                   })
-
               }
-            }
+            },
+            {}
           ],
         }
       ],
