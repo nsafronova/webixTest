@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
-  <script src="/testdata.js"></script>
+  <script src="./testdata.js"></script>
   <title>WebixLesson</title>
 </head>
 
@@ -109,7 +109,7 @@
                     $$('myform').clear()
                     $$("myform").clearValidation();
                   })
-                  .fail(function () {
+                  .catch(function () {
                     webix.message("Oops! Something doesn't work");
                   })
               }
