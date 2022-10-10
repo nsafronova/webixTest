@@ -9,8 +9,6 @@
   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
   <link rel="stylesheet" href="./style.css">
   <script src="./testdata.js"></script>
-  <script src="./products.js"></script>
-  <script src="./users.js"></script>
 </head>
 
 <body>
@@ -45,7 +43,6 @@
       css: "sidebar",
       view: "sidebar",
       width: 200,
-      minHeight: 260,
       scroll: false,
       data: ["Dashboard", "Users", "Products", "Locations"],
       borderless: true,
@@ -74,18 +71,27 @@
     let datatable = {
       id: "mydata",
       view: "datatable",
-      url: "/data.js",
+      url: "./data.js",
       autoConfig: true,
-      autoheight: true,
       scroll: 'auto',
       editable: true,
       hover: "myhover",
       columns: [
-        { id: "rank", header: "", css: "rank", width: 30, sort: "int" },
+        { id: "rank", header: "", css: "rank", width: 40, sort: "int" },
         { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
         { id: "year", header: ["Released", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
         { id: "votes", header: ["Votes", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
+        {
+          view: "button", template: "{common.trashIcon()}", width: 50
+        }
+
       ],
+      onClick: {
+        "wxi-trash": function (e, id) {
+          this.remove(id);
+          return false;
+        }
+      }
     }
 
     let form = {
@@ -127,7 +133,7 @@
                     $$("myform").clearValidation();
                   })
                   .fail(function () {
-                    webix.message("Oops! Something doesn't work");
+                    webix.message("Cleanup canceled.");
                   })
 
               }
@@ -150,11 +156,35 @@
       }
     };
 
+    const list = {
+      view: 'list',
+      url: './users.js',
+      data: ['name', 'country'],
+      header: ["Votes", { content: "textFilter" }]
+    }
+
+    const chart = {
+      view: "chart",
+      type: "bar",
+      url: './users.js',
+      value: 'age',
+      barWidth: 35,
+      radius: 0,
+      gradient: "falling",
+    }
+
+    const treetable = {
+      view: "tree",
+      template: "{common.icon()} {common.checkbox()} {common.folder()} <span>#value#</span>",
+      select: true,
+      url: './products.js'
+    }
+
     let main = {
       cells: [
         { id: "Dashboard", cols: [datatable, form] },
-        { id: "Users", template: "Users View" },
-        { id: "Products", template: "Products view" },
+        { id: "Users", rows: [list, chart] },
+        { id: "Products", rows: [treetable] },
         { id: "Locations", template: "Empty view" }
       ]
     }

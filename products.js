@@ -19,4 +19,3 @@
 		]
 	}
 ]
-console.log('yes');
