@@ -6,48 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
-  <script src="/src/index.js"></script>
+  <script type="module" src="./src/index.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
   <link rel="stylesheet" href="./style.css">
-  <title>WebixLessons</title>
+  <title>Webix Lessons</title>
 </head>
 
 <body>
-  <script>
-
-    webix.ui({
-      view: "popup",
-      id: "my_pop",
-
-      width: 300,
-      body: {
-        view: "list",
-        data: [
-          { id: "1", name: "Settings" },
-          { id: "2", name: "Log Out" },
-        ],
-        template: "#name#",
-        autoheight: true,
-        select: true
-      }
-    });
-
-    webix.ui({
-      rows: [
-        row1,
-        row2,
-        row3
-      ],
-    });
-
-    $$('input_list').attachEvent("onTimedKeyPress", function () {
-      let value = this.getValue().toLowerCase();
-      $$("list").filter(function (obj) {
-        return obj.name.toLowerCase().indexOf(value) !== -1;
-      })
-    });
-
-  </script>
 
 </body>
 
