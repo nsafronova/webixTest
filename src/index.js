@@ -49,7 +49,6 @@ let side = {
 
 //dashboard stuff
 
-
 let datatable = {
    id: "mydata",
    view: "datatable",
@@ -138,8 +137,8 @@ let form = {
    }
 };
 
-
 //users stuff
+
 const filter = {
    view: "toolbar",
    rows: [
@@ -218,7 +217,6 @@ const treetable = {
    }
 }
 
-
 ////
 
 const main = {
@@ -253,9 +251,6 @@ const row3 = {
    align: "center",
    height: 30
 }
-
-
-
 
 // products()
 // dashboard()
