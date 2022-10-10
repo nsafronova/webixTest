@@ -51,3 +51,13 @@
 .sidebar .webix_tree_item.webix_selected:active {
    background-color: rgb(225, 225, 225);
 }
+
+.removeBtn {
+   float: right;
+   color: rgb(83, 98, 112);
+   border-radius: 3px;
+}
+
+.color_row {
+   background-color: rgb(201, 208, 222);
+}

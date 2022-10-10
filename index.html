@@ -9,10 +9,12 @@
   <script src="/src/index.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
   <link rel="stylesheet" href="./style.css">
+  <title>WebixLessons</title>
 </head>
 
 <body>
   <script>
+
     webix.ui({
       view: "popup",
       id: "my_pop",
@@ -35,8 +37,16 @@
         row1,
         row2,
         row3
-      ]
+      ],
     });
+
+    $$('input_list').attachEvent("onTimedKeyPress", function () {
+      let value = this.getValue().toLowerCase();
+      $$("list").filter(function (obj) {
+        return obj.name.toLowerCase().indexOf(value) !== -1;
+      })
+    });
+
   </script>
 
 </body>

@@ -138,24 +138,52 @@ let form = {
    }
 };
 
-//products stuff
-
-const treetable = {
-   view: "tree",
-   template: "{common.icon()} {common.checkbox()} {common.folder()} <span>#value#</span>",
-   select: true,
-   url: './test_data/productsdata.js'
-}
 
 //users stuff
+const filter = {
+   view: "toolbar",
+   rows: [
+      {
+         cols: [
+            { view: "text", id: "input_list" },
+            {
+               view: "button", autowidth: true, value: "Sort asc", css: 'webix_primary', click: function () {
+                  $$('list').sort('#name#', "asc", "string")
+               }
+            },
+            {
+               view: "button", autowidth: true, value: "Sort desc", css: 'webix_primary', click: function () {
+                  $$('list').sort('#name#', "desc", "string")
+               }
+            }
 
+
+         ]
+      }
+
+   ],
+
+}
 const list = {
-   id: 'mylist4',
+   id: "list",
    view: 'list',
    url: './test_data/usersdata.js',
    content: "textFilter",
-   template: '#name# #country#'
-
+   template: '#name# from #country# <span class="removeBtn webix_icon wxi wxi-close"></span>',
+   select: true,
+   onClick: {
+      removeBtn: function (e, id) {
+         this.remove(id);
+         return false;
+      }
+   },
+   ready: function () {
+      for (let i = 0; i <= 4; i++) {
+         let a = $$('list').getIdByIndex(i)
+         $$('list').addCss(a, "color_row")
+         console.log(a);
+      }
+   }
 }
 
 const chart = {
@@ -168,14 +196,37 @@ const chart = {
    radius: 0,
 }
 
+//products stuff
+
+const treetable = {
+   id: "mytreetable",
+   view: "treetable",
+   url: './test_data/productsdata.js',
+   columns: [
+      { id: "id", header: "", css: { "text-align": "right" }, width: 50 },
+      {
+         id: "title", header: "Title", width: 1000,
+         template: "{common.treetable()} #title#"
+      },
+      { id: "price", header: "Price", width: 400 }
+   ],
+   autoheight: true,
+   autowidth: true,
+   select: "cell",
+   ready: function () {
+      $$("mytreetable").openAll()
+   }
+}
+
+
 ////
 
 const main = {
    cells: [
       { id: "Dashboard", cols: [datatable, form] },
-      { id: "Users", rows: [list, chart] },
+      { id: "Users", rows: [filter, list, chart] },
       { id: "Products", rows: [treetable] },
-      { id: "Locations", template: "Empty view" }
+      { id: "Locations", rows: [{}] }
    ]
 }
 
