@@ -1,18 +1,39 @@
+const segment = {
+   rows: [
+      {
+         view: "segmented", id: "selector", inputWidth: 300,
+         options: [
+            { id: 1, value: "All" },
+            { id: 2, value: "Old" },
+            { id: 3, value: "Modern" },
+            { id: 4, value: "New" }
+         ],
+         on: {
+            onChange: function () {
+               $$("mydata").filterByAll();
+            }
+         },
+      }
+   ]
+
+}
+
 const datatable = {
    id: "mydata",
    view: "datatable",
    url: "./test_data/data.js",
    autoConfig: true,
-   scroll: 'auto',
-   editable: true,
+   scroll: 'y',
    hover: "myhover",
    columns: [
-      { id: "rank", header: "", css: "rank", width: 40, sort: "int" },
+      { id: "rank", header: "#", css: "rank", width: 40, sort: "int" },
       { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
-      { id: "year", header: ["Released", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
+      { id: "cat_id", header: ["Category", { content: "selectFilter" }], editor: "select", options: './test_data/categories.js', width: 80 },
+      { id: 'rating', header: ["Rating", { content: "textFilter" }], sort: "string", width: 80 },
       { id: "votes", header: ["Votes", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
+      { id: "year", header: 'Year', width: 80, tooltip: "" },
       {
-         view: "button", template: "{common.trashIcon()}", width: 50
+         view: "button", template: "{common.trashIcon()}", width: 40
       }
 
    ],
@@ -22,6 +43,13 @@ const datatable = {
          return false;
       }
    }
+}
+
+let dashboard = {
+   rows: [
+      segment,
+      datatable
+   ]
 }
 
 const form = {
@@ -86,4 +114,4 @@ const form = {
    }
 };
 
-export { datatable, form }
+export { dashboard, form }

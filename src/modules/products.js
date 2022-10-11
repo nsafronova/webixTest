@@ -5,13 +5,11 @@ const treetable = {
    columns: [
       { id: "id", header: "", css: { "text-align": "right" }, width: 50 },
       {
-         id: "title", header: "Title", width: 1000,
+         id: "title", header: "Title", fillspace: true,
          template: "{common.treetable()} #title#"
       },
       { id: "price", header: "Price", width: 400 }
    ],
-   autoheight: true,
-   autowidth: true,
    select: "cell",
    ready: function () {
       $$("mytreetable").openAll()

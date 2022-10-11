@@ -1,4 +1,4 @@
-import { datatable, form } from './modules/dashboard.js'
+import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
 
@@ -49,7 +49,7 @@ let side = {
 
 const main = {
    cells: [
-      { id: "Dashboard", cols: [datatable, form] },
+      { id: "Dashboard", cols: [dashboard, form] },
       { id: "Users", rows: [filter, list, chart] },
       { id: "Products", rows: [treetable] },
       { id: "Locations", rows: [{}] }
@@ -111,3 +111,24 @@ $$('input_list').attachEvent("onTimedKeyPress", function () {
       return obj.name.toLowerCase().indexOf(value) !== -1;
    })
 });
+
+// $$("mydata").registerFilter(
+//    $$("selector"),
+//    {
+//       columnId: "year", compare: function (year, filter, item) {
+//          let yea = year.getValue().toNumber();
+//          if (filter == 2)
+//             return yea > 2000;
+
+//          else return yea <= 2000;
+//       }
+//    },
+//    {
+//       getValue: function (node) {
+//          return node.getValue();
+//       },
+//       setValue: function (node, value) {
+//          node.setValue(value);
+//       }
+//    }
+// );
