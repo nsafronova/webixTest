@@ -22,7 +22,6 @@ const datatable = {
    id: "mydata",
    view: "datatable",
    url: "./test_data/data.js",
-   autoConfig: true,
    scroll: 'y',
    hover: "myhover",
    columns: [

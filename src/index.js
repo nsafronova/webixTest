@@ -25,9 +25,11 @@ const sidebar = {
    scroll: false,
    data: ["Dashboard", "Users", "Products", "Locations"],
    borderless: true,
+   select: true,
    on: {
       onAfterSelect: function (id) {
-         $$(id).show();
+         if (id <= 0)
+            $$(id).show();
       }
    }
 };
@@ -111,6 +113,8 @@ $$('input_list').attachEvent("onTimedKeyPress", function () {
       return obj.name.toLowerCase().indexOf(value) !== -1;
    })
 });
+
+$$("mylist").select("Dashboard");
 
 // $$("mydata").registerFilter(
 //    $$("selector"),

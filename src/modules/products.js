@@ -12,7 +12,7 @@ const treetable = {
    ],
    select: "cell",
    ready: function () {
-      $$("mytreetable").openAll()
+      this.openAll()
    }
 }
 
