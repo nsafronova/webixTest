@@ -100,15 +100,12 @@ const form = {
    rules: {
       title: webix.rules.isNotEmpty,
       year: function (value) {
-
          return value > 1970 && value < 2022;
       },
       votes: function (value) {
-         Number(value)
          return value < 100000;
       },
       rating: webix.rules.isNotEmpty && function (value) {
-         Number(value)
          return value > 0;
       }
    },
@@ -116,15 +113,15 @@ const form = {
 
 
 function saveItem() {
-   let formItems = $$("myform");
-   let dataItems = $$("mydata");
-   let item_data = formItems.getValues();
-   if (formItems.validate()) {
+   let formView = $$("myform");
+   let dataView = $$("mydata");
+   let item_data = formView.getValues();
+   if (formView.validate()) {
       if (item_data.id) {
-         dataItems.updateItem(item_data.id, item_data);
+         dataView.updateItem(item_data.id, item_data);
          webix.message({ type: 'success', text: "Database updated", expire: 1000 })
       } else {
-         dataItems.add(item_data);
+         dataView.add(item_data);
          webix.message({ type: 'success', text: "New item was added", expire: 1000 })
       }
    }
