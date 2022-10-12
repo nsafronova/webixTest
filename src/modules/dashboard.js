@@ -121,7 +121,6 @@ function saveItem() {
    let dataItems = $$("mydata");
    let item_data = formItems.getValues();
    if (formItems.validate()) {
-
       if (item_data.id) {
          dataItems.updateItem(item_data.id, item_data);
          webix.message({ type: 'success', text: "Database updated", expire: 1000 })
