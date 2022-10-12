@@ -101,26 +101,36 @@ const form = {
    rules: {
       title: webix.rules.isNotEmpty,
       year: function (value) {
+
          return value > 1970 && value < 2022;
       },
       votes: function (value) {
+         Number(value)
          return value < 100000;
       },
       rating: webix.rules.isNotEmpty && function (value) {
+         Number(value)
          return value > 0;
       }
    },
 };
 
+
 function saveItem() {
-   var form = $$("myform");
-   var list = $$("mydata");
-   var item_data = form.getValues();
-   if (item_data.id) {
-      list.updateItem(item_data.id, item_data);
-   } else {
-      list.add(item_data);
+   let formItems = $$("myform");
+   let dataItems = $$("mydata");
+   let item_data = formItems.getValues();
+   if (formItems.validate()) {
+
+      if (item_data.id) {
+         dataItems.updateItem(item_data.id, item_data);
+         webix.message({ type: 'success', text: "Database updated", expire: 1000 })
+      } else {
+         dataItems.add(item_data);
+         webix.message({ type: 'success', text: "New item was added", expire: 1000 })
+      }
    }
+
 };
 
 function valuesToForm(id) {
