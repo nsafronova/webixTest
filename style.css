@@ -24,3 +24,40 @@
 .sidebar {
    background-color: rgb(234, 234, 234);
 }
+
+.myhover {
+   background: #e9e3f3;
+}
+
+.rank {
+   background-color: #F4F5F9;
+}
+
+.connect_label .webix_el_box,
+.connect_label .wxi-check {
+   color: rgb(125, 160, 64);
+}
+
+.copyright {
+   text-align: center
+}
+
+.sidebar {
+   background-color: rgb(234, 234, 234);
+}
+
+.sidebar .webix_tree_item:hover,
+.sidebar .webix_tree_item.webix_selected,
+.sidebar .webix_tree_item.webix_selected:active {
+   background-color: rgb(225, 225, 225);
+}
+
+.removeBtn {
+   float: right;
+   color: rgb(83, 98, 112);
+   border-radius: 3px;
+}
+
+.color_row {
+   background-color: rgb(201, 208, 222);
+}
