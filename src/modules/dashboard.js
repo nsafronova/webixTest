@@ -28,7 +28,6 @@ const datatable = {
    columns: [
       { id: "rank", header: "#", css: "rank", width: 40, sort: "int" },
       { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
-      { id: "cat_id", header: ["Category", { content: "selectFilter" }], editor: "select", options: './test_data/categories.js', width: 80 },
       { id: 'rating', header: ["Rating", { content: "textFilter" }], sort: "string", width: 80 },
       { id: "votes", header: ["Votes", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
       { id: "year", header: 'Year', width: 80, tooltip: "" },
