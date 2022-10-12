@@ -23,11 +23,12 @@ const datatable = {
    view: "datatable",
    url: "./test_data/data.js",
    scroll: 'y',
-   select: 'cell',
+   select: true,
    hover: "myhover",
    columns: [
       { id: "rank", header: "#", css: "rank", width: 40, sort: "int" },
       { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
+
       { id: "cat_id", header: ["Category", { content: "selectFilter" }], editor: "select", options: './test_data/categories.js', width: 80 },
       { id: 'rating', header: ["Rating", { content: "textFilter" }], sort: "string", width: 80 },
       { id: "votes", header: ["Votes", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
@@ -43,9 +44,9 @@ const datatable = {
          return false;
       }
    },
-   on: {
-      onAfterSelect: valuesToForm
-   }
+   // on: {
+   //    onAfterSelect: valuesToForm
+   // }
 
 }
 
@@ -66,6 +67,7 @@ const form = {
          body: {
             rows: [
                { view: "text", label: "Title", name: 'title', invalidMessage: 'Title is empty' },
+
                { view: "text", label: "Year", name: 'year', invalidMessage: 'Incorrect year' },
                { view: "text", label: "Rating", name: 'rating', invalidMessage: 'Rating is empty' },
                { view: "text", label: "Votes", name: 'votes', invalidMessage: 'Incorrect votes' }
@@ -75,7 +77,8 @@ const form = {
       {
          cols: [
             {
-               view: "button", value: "Save", css: 'webix_primary', click: saveItem
+               view: "button", value: "Save", css: 'webix_primary', click: save_form
+
             },
             {
                view: "button", value: "Clear", click: function () {
@@ -105,36 +108,45 @@ const form = {
          return value > 1970 && value < 2022;
       },
       votes: function (value) {
-         Number(value)
+
          return value < 100000;
       },
       rating: webix.rules.isNotEmpty && function (value) {
-         Number(value)
          return value > 0;
       }
    },
 };
 
 
-function saveItem() {
-   let formItems = $$("myform");
-   let dataItems = $$("mydata");
-   let item_data = formItems.getValues();
-   if (formItems.validate()) {
-      if (item_data.id) {
-         dataItems.updateItem(item_data.id, item_data);
-         webix.message({ type: 'success', text: "Database updated", expire: 1000 })
-      } else {
-         dataItems.add(item_data);
-         webix.message({ type: 'success', text: "New item was added", expire: 1000 })
-      }
+function save_form() {
+   var form = $$('myform');
+   if (form.isDirty()) {
+      if (!form.validate())
+         return false;
+      form.save();
+
    }
-
 };
 
-function valuesToForm(id) {
-   var values = $$("mydata").getItem(id);
-   $$("myform").setValues(values)
-};
+// function saveItem() {
+//    let formItems = $$("myform");
+//    let dataItems = $$("mydata");
+//    let item_data = formItems.getValues();
+//    if (formItems.validate()) {
+//       if (item_data.id) {
+//          dataItems.updateItem(item_data.id, item_data);
+//          webix.message({ type: 'success', text: "Database updated", expire: 1000 })
+//       } else {
+//          dataItems.add(item_data);
+//          webix.message({ type: 'success', text: "New item was added", expire: 1000 })
+//       }
+//    }
+
+// };
+
+// function valuesToForm(id) {
+//    var values = $$("mydata").getItem(id);
+//    $$("myform").setValues(values)
+// };
 
 export { dashboard, form }
