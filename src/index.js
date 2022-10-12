@@ -116,26 +116,27 @@ $$('input_list').attachEvent("onTimedKeyPress", function () {
 
 $$("mylist").select("Dashboard");
 
+$$('myform').bind($$('mydata'))
+// $$('mydata').select(2)
 
 
+$$("mydata").registerFilter(
+   $$("selector"),
+   {
+      columnId: "year", compare: function (year, filter, item) {
+         let yea = year.getValue().toNumber();
+         if (filter == 2)
+            return yea > 2000;
 
-// $$("mydata").registerFilter(
-//    $$("selector"),
-//    {
-//       columnId: "year", compare: function (year, filter, item) {
-//          let yea = year.getValue().toNumber();
-//          if (filter == 2)
-//             return yea > 2000;
-
-//          else return yea <= 2000;
-//       }
-//    },
-//    {
-//       getValue: function (node) {
-//          return node.getValue();
-//       },
-//       setValue: function (node, value) {
-//          node.setValue(value);
-//       }
-//    }
-// );
+         else return yea <= 2000;
+      }
+   },
+   {
+      getValue: function (node) {
+         return node.getValue();
+      },
+      setValue: function (node, value) {
+         node.setValue(value);
+      }
+   }
+);
