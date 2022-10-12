@@ -22,12 +22,17 @@ const filter = {
    ],
 
 }
+
+
 const list = {
    id: "list",
    view: 'list',
    url: './test_data/usersdata.js',
    content: "textFilter",
    template: '#name# from #country# <span class="removeBtn webix_icon wxi wxi-close"></span>',
+   editable: true,
+   editor: "text",
+   editValue: "name",
    select: true,
    onClick: {
       removeBtn: function (e, id) {
@@ -36,11 +41,13 @@ const list = {
       }
    },
    ready: function () {
-      for (let i = 0; i <= 4; i++) {
-         let a = $$('list').getIdByIndex(i)
-         $$('list').addCss(a, "color_row")
-      }
-   }
+      // for (let i = 0; i <= 4; i++) {
+      //    let a = $$('list').getIdByIndex(i)
+      //    $$('list').addCss(a, "color_row")
+      // }
+   },
+
+
 }
 
 const chart = {

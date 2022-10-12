@@ -2,6 +2,7 @@ const treetable = {
    id: "mytreetable",
    view: "treetable",
    url: './test_data/productsdata.js',
+
    columns: [
       { id: "id", header: "", css: { "text-align": "right" }, width: 50 },
       {
@@ -13,7 +14,8 @@ const treetable = {
    select: "cell",
    ready: function () {
       this.openAll()
-   }
+   },
+
 }
 
 export { treetable }
