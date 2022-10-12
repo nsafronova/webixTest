@@ -28,8 +28,8 @@ const sidebar = {
    select: true,
    on: {
       onAfterSelect: function (id) {
-         if (id <= 0)
-            $$(id).show();
+         const view = $$(id);
+         if (view) view.show();
       }
    }
 };
@@ -115,6 +115,9 @@ $$('input_list').attachEvent("onTimedKeyPress", function () {
 });
 
 $$("mylist").select("Dashboard");
+
+
+
 
 // $$("mydata").registerFilter(
 //    $$("selector"),

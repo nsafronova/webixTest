@@ -23,6 +23,7 @@ const datatable = {
    view: "datatable",
    url: "./test_data/data.js",
    scroll: 'y',
+   select: 'cell',
    hover: "myhover",
    columns: [
       { id: "rank", header: "#", css: "rank", width: 40, sort: "int" },
@@ -41,7 +42,11 @@ const datatable = {
          this.remove(id);
          return false;
       }
+   },
+   on: {
+      onAfterSelect: valuesToForm
    }
+
 }
 
 let dashboard = {
@@ -70,13 +75,7 @@ const form = {
       {
          cols: [
             {
-               view: "button", value: "Add new", css: 'webix_primary', click: function () {
-                  if ($$("myform").validate()) {
-                     let item = $$("myform").getValues();
-                     $$("mydata").add(item);
-                     webix.message({ type: 'success', text: "Database updated", expire: 1000 })
-                  }
-               }
+               view: "button", value: "Save", css: 'webix_primary', click: saveItem
             },
             {
                view: "button", value: "Clear", click: function () {
@@ -110,7 +109,23 @@ const form = {
       rating: webix.rules.isNotEmpty && function (value) {
          return value > 0;
       }
+   },
+};
+
+function saveItem() {
+   var form = $$("myform");
+   var list = $$("mydata");
+   var item_data = form.getValues();
+   if (item_data.id) {
+      list.updateItem(item_data.id, item_data);
+   } else {
+      list.add(item_data);
    }
+};
+
+function valuesToForm(id) {
+   var values = $$("mydata").getItem(id);
+   $$("myform").setValues(values)
 };
 
 export { dashboard, form }
