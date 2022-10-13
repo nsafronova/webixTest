@@ -1,7 +1,8 @@
+import { ids } from './helpers.js'
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
-import { ids } from './helpers.js'
+
 
 
 const label = {
@@ -14,12 +15,12 @@ const btn = {
    type: "icon", icon: "wxi-user", label: "Profile",
    width: 100,
    css: 'webix_transparent',
-   popup: 'my_pop'
+   popup: ids.headerPopup
 }
 
 const sidebar = {
    minHeight: 300,
-   id: "mylist",
+   id: ids.sidebarList,
    css: "sidebar",
    view: "sidebar",
    width: 200,
@@ -85,7 +86,7 @@ const row3 = {
 
 webix.ui({
    view: "popup",
-   id: "my_pop",
+   id: ids.headerPopup,
 
    width: 300,
    body: {
@@ -108,20 +109,20 @@ webix.ui({
    ],
 });
 
-$$('input_list').attachEvent("onTimedKeyPress", function () {
+$$(ids.usersInputList).attachEvent("onTimedKeyPress", function () {
    let value = this.getValue().toLowerCase();
-   $$("list").filter(function (obj) {
+   $$(ids.sidebarList).filter(function (obj) {
       return obj.name.toLowerCase().indexOf(value) !== -1;
    })
 });
 
-$$("mylist").select("Dashboard");
+$$(ids.sidebarList).select("Dashboard");
 
-$$('myform').bind($$('mydata'))
+$$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
 
-$$("mydata").registerFilter(
-   $$("selector"),
+$$(ids.dashboardTable).registerFilter(
+   $$(ids.dashboardSelector),
    {
       columnId: "year",
       compare: function (value, filter, item) {
@@ -144,8 +145,8 @@ $$("mydata").registerFilter(
    }
 );
 
-$$("chart").sync($$("list"), function () {
-   $$("chart").group({
+$$(ids.usersChart).sync($$(ids.usersList), function () {
+   $$(ids.usersChart).group({
       by: "country",
       map: {
          name: ["name", "count"]

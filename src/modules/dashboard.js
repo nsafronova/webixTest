@@ -1,7 +1,8 @@
+import { ids } from './../helpers.js'
 const segment = {
    rows: [
       {
-         view: "segmented", id: "selector", inputWidth: 300,
+         view: "segmented", id: ids.dashboardSelector, inputWidth: 300,
          options: [
             { id: 1, value: "All" },
             { id: 2, value: "Old" },
@@ -10,7 +11,7 @@ const segment = {
          ],
          on: {
             onChange: function () {
-               $$("mydata").filterByAll();
+               $$(ids.dashboardTable).filterByAll();
             }
          },
       }
@@ -19,8 +20,8 @@ const segment = {
 }
 
 const datatable = {
-   id: "mydata",
-   view: "datatable",
+   id: ids.dashboardTable,
+   view: 'datatable',
    url: "./test_data/data.js",
    scroll: 'y',
    select: true,
@@ -57,7 +58,7 @@ let dashboard = {
 
 const form = {
    view: "form",
-   id: "myform",
+   id: ids.dashboardForm,
    width: 300,
    elements: [
       {
@@ -86,8 +87,8 @@ const form = {
                      text: "You are about to agree. Are you sure?"
                   })
                      .then(function () {
-                        $$('myform').clear()
-                        $$("myform").clearValidation();
+                        $$(ids.dashboardForm).clear()
+                        $$(ids.dashboardForm).clearValidation();
                      })
                      .fail(function () {
                         webix.message("Cleanup canceled.");
@@ -117,7 +118,7 @@ const form = {
 
 
 function save_form() {
-   var form = $$('myform');
+   var form = $$(ids.dashboardForm);
    if (form.isDirty()) {
       if (!form.validate())
          return false;

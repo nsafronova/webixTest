@@ -1,17 +1,19 @@
+import { ids } from './../helpers.js'
+
 const filter = {
    view: "toolbar",
    rows: [
       {
          cols: [
-            { view: "text", id: "input_list" },
+            { view: "text", id: ids.usersInputList },
             {
                view: "button", autowidth: true, value: "Sort asc", css: 'webix_primary', click: function () {
-                  $$('list').sort('#name#', "asc", "string")
+                  $$(ids.usersList).sort('#name#', "asc", "string")
                }
             },
             {
                view: "button", autowidth: true, value: "Sort desc", css: 'webix_primary', click: function () {
-                  $$('list').sort('#name#', "desc", "string")
+                  $$(ids.usersList).sort('#name#', "desc", "string")
                }
             },
             {
@@ -22,7 +24,7 @@ const filter = {
                      "age": Math.floor(Math.random() * 80) + 10,
                      "country": "Country"
                   }
-                  $$('list').add(userObj)
+                  $$(ids.usersList).add(userObj)
                }
             }
 
@@ -38,7 +40,7 @@ webix.protoUI({
 
 const list = {
    view: 'editlist',
-   id: 'list',
+   id: ids.usersList,
    template: '#name#, #age# from #country# <span class="removeBtn webix_icon wxi wxi-close"></span>',
    editable: true,
    editor: "text",
@@ -66,7 +68,7 @@ const list = {
 }
 
 const chart = {
-   id: 'chart',
+   id: ids.usersChart,
    view: "chart",
    type: "bar",
    value: '#name#',

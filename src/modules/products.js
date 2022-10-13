@@ -1,5 +1,6 @@
+import { ids } from './../helpers.js'
+
 const treetable = {
-   id: "mytreetable",
    view: "treetable",
    editable: true,
    url: './test_data/productsdata.js',

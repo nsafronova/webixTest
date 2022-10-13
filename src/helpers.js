@@ -1,5 +1,12 @@
 const ids = {
-   dashboardTable: 'datatable',
+   headerPopup: 'popup',
+   sidebarList: 'list',
+   dashboardTable: "datatable",
+   dashboardForm: "form",
+   dashboardSelector: 'selector',
+   usersList: 'editlist',
+   usersInputList: 'text',
+   usersChart: 'chart',
 
 }
 
