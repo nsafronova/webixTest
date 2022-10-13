@@ -16,9 +16,14 @@ const filter = {
             },
             {
                view: 'button', autowidth: true, value: "Add new", css: 'webix_primary',
-               // click: function () {
-               //    $$("list").add({ title: "New film" })
-               // }
+               click: function () {
+                  let userObj = {
+                     "name": "Name",
+                     "age": Math.floor(Math.random() * 80) + 10,
+                     "country": "Country"
+                  }
+                  $$('list').add(userObj)
+               }
             }
 
          ]
@@ -64,7 +69,6 @@ const chart = {
    id: 'chart',
    view: "chart",
    type: "bar",
-   url: './test_data/usersdata.js',
    value: '#name#',
    xAxis: {
       template: "#country#"
@@ -72,15 +76,7 @@ const chart = {
    yAxis: {
    },
    barWidth: 35,
-   radius: 0,
-   ready: function () {
-      $$("chart").group({
-         by: "country",
-         map: {
-            name: ["name", "count"]
-         }
-      });
-   }
+   radius: 0
 }
 
 export { filter, list, chart }
