@@ -117,7 +117,6 @@ $$('input_list').attachEvent("onTimedKeyPress", function () {
 $$("mylist").select("Dashboard");
 
 $$('myform').bind($$('mydata'))
-// $$('mydata').select(2)
 
 
 $$("mydata").registerFilter(
@@ -141,6 +140,29 @@ $$("mydata").registerFilter(
    }
 );
 
-webix.protoUI({
-   name: "editlist",
-}, webix.EditAbility, webix.ui.list);
+
+
+$$("mydata").registerFilter(
+   $$("selector"),
+   {
+      columnId: "year",
+      compare: function (value, filter, item) {
+         // var year = value.getValues();
+         if (filter == 4) {
+            return value >= 2010;
+         }
+         else if (filter == 3) {
+            return value >= 2000
+         }
+         else if (filter == 2) {
+            return value < 2000
+         }
+         else return value;
+      }
+   },
+   {
+      getValue: function (node) { return node.getValue(); },
+      setValue: function (node, value) { node.setValue(value); }
+   }
+);
+$$("chart").sync($$("list"));
