@@ -44,9 +44,7 @@ const datatable = {
          return false;
       }
    },
-   // on: {
-   //    onAfterSelect: valuesToForm
-   // }
+   // ready: getRandomCategory()
 
 }
 
@@ -148,5 +146,15 @@ function save_form() {
 //    var values = $$("mydata").getItem(id);
 //    $$("myform").setValues(values)
 // };
+
+// function getRandomInRange(min, max) {
+//    return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+
+// function getRandomCategory() {
+//    let randNum = getRandomInRange(0, 3);
+//    $$('mydata').add()
+
+// }
 
 export { dashboard, form }

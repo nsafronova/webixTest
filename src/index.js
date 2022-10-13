@@ -1,6 +1,7 @@
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
+import { ids } from './helpers.js'
 
 
 const label = {
@@ -124,7 +125,7 @@ $$("mydata").registerFilter(
    {
       columnId: "year",
       compare: function (value, filter, item) {
-         // var year = value.getValues();
+
          if (filter == 4) {
             return value >= 2010;
          }
