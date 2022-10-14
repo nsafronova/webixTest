@@ -140,35 +140,4 @@ function save_form() {
    }
 };
 
-// function saveItem() {
-//    let formItems = $$("myform");
-//    let dataItems = $$("mydata");
-//    let item_data = formItems.getValues();
-//    if (formItems.validate()) {
-//       if (item_data.id) {
-//          dataItems.updateItem(item_data.id, item_data);
-//          webix.message({ type: 'success', text: "Database updated", expire: 1000 })
-//       } else {
-//          dataItems.add(item_data);
-//          webix.message({ type: 'success', text: "New item was added", expire: 1000 })
-//       }
-//    }
-
-// };
-
-// function valuesToForm(id) {
-//    var values = $$("mydata").getItem(id);
-//    $$("myform").setValues(values)
-// };
-
-// function getRandomInRange(min, max) {
-//    return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
-// function getRandomCategory() {
-//    let randNum = getRandomInRange(0, 3);
-//    $$('mydata').add()
-
-// }
-
 export { dashboard, form }
