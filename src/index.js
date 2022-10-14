@@ -2,7 +2,7 @@ import { ids } from './helpers.js'
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
-
+import { countries, names } from './../test_data/countries.js'
 
 
 const label = {
@@ -153,4 +153,6 @@ $$(ids.usersChart).sync($$(ids.usersList), function () {
       }
    });
 });
+
+
 

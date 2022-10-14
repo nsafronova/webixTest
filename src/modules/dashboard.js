@@ -1,3 +1,4 @@
+import { categories } from '../../test_data/categories.js';
 import { ids } from './../helpers.js'
 const segment = {
    rows: [
@@ -30,7 +31,7 @@ const datatable = {
       { id: "rank", header: "#", css: "rank", width: 40, sort: "int" },
       { id: "title", header: ["Film title", { content: "textFilter" }], fillspace: true, sort: "string" },
 
-      { id: "cat_id", header: ["Category", { content: "selectFilter" }], editor: "select", options: './test_data/categories.js', width: 80 },
+      { id: "categoryId", header: ["Category", { content: "selectFilter" }], editor: "select", options: categories, width: 80 },
       { id: 'rating', header: ["Rating", { content: "textFilter" }], sort: "string", width: 80 },
       { id: "votes", header: ["Votes", { content: "textFilter" }], width: 80, sort: "int", tooltip: "" },
       { id: "year", header: 'Year', width: 80, tooltip: "" },
@@ -45,9 +46,21 @@ const datatable = {
          return false;
       }
    },
-   // ready: getRandomCategory()
-
+   scheme: {
+      $init: function (obj) {
+         obj.categoryId = getRandomValue(categories)
+      }
+   }
 }
+
+
+
+function getRandomValue(array) {
+   const randomIndex = Math.floor(Math.random() * array.length);
+   let item = array[randomIndex];
+   return item.id;
+}
+
 
 let dashboard = {
    rows: [
