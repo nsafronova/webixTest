@@ -95,6 +95,7 @@ const form = {
                      .then(function () {
                         $$(ids.dashboardForm).clear()
                         $$(ids.dashboardForm).clearValidation();
+                        $$(ids.dashboardTable).clearSelection();
                      })
                      .fail(function () {
                         webix.message('Cleanup canceled.');
