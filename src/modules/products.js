@@ -1,5 +1,3 @@
-import { ids, getRandomItem } from './../helpers.js'
-
 const treetable = {
    view: 'treetable',
    editable: true,
