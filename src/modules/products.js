@@ -1,4 +1,4 @@
-import { ids } from './../helpers.js'
+import { ids, getRandomItem } from './../helpers.js'
 
 const treetable = {
    view: 'treetable',

@@ -1,5 +1,5 @@
 import { categories } from '../../test_data/categories.js';
-import { ids } from './../helpers.js'
+import { ids, getRandomItem } from './../helpers.js'
 const segment = {
    rows: [
       {
@@ -48,17 +48,10 @@ const datatable = {
    },
    scheme: {
       $init: function (obj) {
-         obj.categoryId = getRandomValue(categories)
+         const category = getRandomItem(categories);
+         obj.categoryId = category.id
       }
    }
-}
-
-
-
-function getRandomValue(array) {
-   const randomIndex = Math.floor(Math.random() * array.length);
-   const item = array[randomIndex];
-   return item.id;
 }
 
 

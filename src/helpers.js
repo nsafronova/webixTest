@@ -14,4 +14,10 @@ const ids = {
 
 }
 
-export { ids }
+function getRandomItem(array) {
+   const randomIndex = Math.floor(Math.random() * array.length);
+   let item = array[randomIndex];
+   return item;
+}
+
+export { ids, getRandomItem }

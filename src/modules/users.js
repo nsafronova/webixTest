@@ -1,4 +1,4 @@
-import { ids } from './../helpers.js'
+import { ids, getRandomItem } from './../helpers.js'
 import { countries, names } from '../../test_data/countries.js'
 
 const filter = {
@@ -21,9 +21,9 @@ const filter = {
                view: 'button', autowidth: true, value: 'Add new', css: 'webix_primary',
                click: function () {
                   let userObj = {
-                     'name': getRandomValue(names),
+                     'name': getRandomItem(names).value,
                      'age': Math.floor(Math.random() * 80) + 10,
-                     'country': getRandomValue(countries)
+                     'country': getRandomItem(countries).value
                   }
                   $$(ids.usersList).add(userObj)
                }
@@ -36,12 +36,6 @@ const filter = {
 
 }
 
-function getRandomValue(array) {
-   const randomIndex = Math.floor(Math.random() * array.length);
-   let item = array[randomIndex];
-   item = item.value
-   return item;
-}
 
 webix.protoUI({
    name: 'editlist',
