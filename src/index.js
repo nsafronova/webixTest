@@ -6,13 +6,13 @@ import { countries, names } from './../test_data/countries.js'
 
 
 const label = {
-   view: "label",
-   label: "My App",
+   view: 'label',
+   label: 'My App',
 };
 
 const btn = {
-   view: "button",
-   type: "icon", icon: "wxi-user", label: "Profile",
+   view: 'button',
+   type: 'icon', icon: 'wxi-user', label: 'Profile',
    width: 100,
    css: 'webix_transparent',
    popup: ids.headerPopup
@@ -21,11 +21,11 @@ const btn = {
 const sidebar = {
    minHeight: 300,
    id: ids.sidebarList,
-   css: "sidebar",
-   view: "sidebar",
+   css: 'sidebar',
+   view: 'sidebar',
    width: 200,
    scroll: false,
-   data: ["Dashboard", "Users", "Products", "Locations"],
+   data: ['Dashboard', 'Users', 'Products', 'Locations'],
    borderless: true,
    select: true,
    on: {
@@ -37,14 +37,14 @@ const sidebar = {
 };
 
 const connected = {
-   view: "label",
-   align: "center",
-   label: "<span class='webix_icon wxi wxi-check'></span>Connected",
-   css: "connect_label",
+   view: 'label',
+   align: 'center',
+   label: '<span class="webix_icon wxi wxi- check"></span>Connected',
+   css: 'connect_label',
 }
 
 let side = {
-   css: "sidebar",
+   css: 'sidebar',
    rows: [
       sidebar,
       connected
@@ -53,16 +53,16 @@ let side = {
 
 const main = {
    cells: [
-      { id: "Dashboard", cols: [dashboard, form] },
-      { id: "Users", rows: [filter, list, chart] },
-      { id: "Products", rows: [treetable] },
-      { id: "Locations", rows: [{}] }
+      { id: 'Dashboard', cols: [dashboard, form] },
+      { id: 'Users', rows: [filter, list, chart] },
+      { id: 'Products', rows: [treetable] },
+      { id: 'Locations', rows: [{}] }
    ]
 }
 
 const row1 = {
-   view: "toolbar",
-   css: "webix_dark",
+   view: 'toolbar',
+   css: 'webix_dark',
    paddingX: 10,
    cols: [
       label,
@@ -73,29 +73,29 @@ const row1 = {
 const row2 = {
    cols: [
       side,
-      { view: "resizer" },
+      { view: 'resizer' },
       main
    ]
 };
 
 const row3 = {
-   template: `<div class="copyright"> The software is provided by <a href="https://webix.com/" target="_blank">webix.com.</a> All rights are reserved. (c) </div>`,
-   align: "center",
+   template: `<div class='copyright'> The software is provided by <a href='https://webix.com/' target='_blank'>webix.com.</a> All rights are reserved. (c) </div>`,
+   align: 'center',
    height: 30
 }
 
 webix.ui({
-   view: "popup",
+   view: 'popup',
    id: ids.headerPopup,
 
    width: 300,
    body: {
-      view: "list",
+      view: 'list',
       data: [
-         { id: "1", name: "Settings" },
-         { id: "2", name: "Log Out" },
+         { id: '1', name: 'Settings' },
+         { id: '2', name: 'Log Out' },
       ],
-      template: "#name#",
+      template: '#name#',
       autoheight: true,
       select: true
    }
@@ -109,14 +109,14 @@ webix.ui({
    ],
 });
 
-$$(ids.usersInputList).attachEvent("onTimedKeyPress", function () {
+$$(ids.usersInputList).attachEvent('onTimedKeyPress', function () {
    let value = this.getValue().toLowerCase();
    $$(ids.sidebarList).filter(function (obj) {
       return obj.name.toLowerCase().indexOf(value) !== -1;
    })
 });
 
-$$(ids.sidebarList).select("Dashboard");
+$$(ids.sidebarList).select('Dashboard');
 
 $$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
@@ -124,7 +124,7 @@ $$(ids.dashboardForm).bind($$(ids.dashboardTable))
 $$(ids.dashboardTable).registerFilter(
    $$(ids.dashboardSelector),
    {
-      columnId: "year",
+      columnId: 'year',
       compare: function (value, filter, item) {
 
          if (filter == 4) {
@@ -147,9 +147,9 @@ $$(ids.dashboardTable).registerFilter(
 
 $$(ids.usersChart).sync($$(ids.usersList), function () {
    $$(ids.usersChart).group({
-      by: "country",
+      by: 'country',
       map: {
-         name: ["name", "count"]
+         name: ['name', 'count']
       }
    });
 });
