@@ -25,7 +25,7 @@ const sidebar = {
    view: 'sidebar',
    width: 200,
    scroll: false,
-   data: ['Dashboard', 'Users', 'Products', 'Locations'],
+   data: [ids.multiviewDashboard, ids.multiviewUsers, ids.multiviewProducts, ids.multiviewAdmin],
    borderless: true,
    select: true,
    on: {
@@ -53,10 +53,10 @@ let side = {
 
 const main = {
    cells: [
-      { id: 'Dashboard', cols: [dashboard, form] },
-      { id: 'Users', rows: [filter, list, chart] },
-      { id: 'Products', rows: [treetable] },
-      { id: 'Locations', rows: [{}] }
+      { id: ids.multiviewDashboard, cols: [dashboard, form] },
+      { id: ids.multiviewUsers, rows: [filter, list, chart] },
+      { id: ids.multiviewProducts, rows: [treetable] },
+      { id: ids.multiviewAdmin, rows: [{}] }
    ]
 }
 
@@ -116,7 +116,7 @@ $$(ids.usersInputList).attachEvent('onTimedKeyPress', function () {
    })
 });
 
-$$(ids.sidebarList).select('Dashboard');
+$$(ids.sidebarList).select(ids.multiviewDashboard);
 
 $$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
