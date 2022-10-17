@@ -58,6 +58,6 @@
    border-radius: 3px;
 }
 
-.color_row {
-   background-color: rgb(201, 208, 222);
+.highlight {
+   background-color: lightyellow;
 }
