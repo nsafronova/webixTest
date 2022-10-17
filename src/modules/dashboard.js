@@ -57,7 +57,7 @@ const datatable = {
 
 function getRandomValue(array) {
    const randomIndex = Math.floor(Math.random() * array.length);
-   let item = array[randomIndex];
+   const item = array[randomIndex];
    return item.id;
 }
 
@@ -131,13 +131,9 @@ const form = {
 
 
 function save_form() {
-   var form = $$(ids.dashboardForm);
-   if (form.isDirty()) {
-      if (!form.validate())
-         return false;
-      form.save();
-
-   }
+   const form = $$(ids.dashboardForm);
+   if (form.isDirty() && form.validate())
+      form.save()
 };
 
 export { dashboard, form }
