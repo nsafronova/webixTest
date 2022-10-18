@@ -117,11 +117,6 @@ $$(ids.usersInputList).attachEvent('onTimedKeyPress', function () {
    })
 });
 
-$$(ids.sidebarList).select(ids.multiviewDashboard);
-
-$$(ids.dashboardForm).bind($$(ids.dashboardTable))
-
-
 $$(ids.dashboardTable).registerFilter(
    $$(ids.dashboardSelector),
    {
@@ -155,13 +150,17 @@ $$(ids.usersChart).sync($$(ids.usersList), function () {
    });
 });
 
+$$(ids.sidebarList).select(ids.multiviewDashboard);
 
-$$(ids.dashboardTable).sync(collectionCategories)
+$$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
 $$(ids.usersList).sync(collectionUsers)
 
+$$(ids.adminForm).bind($$(ids.adminTable))
+
 $$(ids.adminTable).sync(collectionCategories)
-// $$(ids.adminForm).bind($$(ids.adminTable))
+
+
 
 
 

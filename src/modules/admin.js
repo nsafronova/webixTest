@@ -26,19 +26,21 @@ const adminForm = {
    view: 'form',
    id: ids.adminForm,
    rows: [
-      {
-         view: 'text', id: 'categoryFilm'
-      },
+      { view: 'text', name: 'value' },
       {
          view: "toolbar", cols: [
             {
-               view: "button", value: "Add category", click: function () {
-                  collectionCategories.add(categoryFilm.value)
+               view: "button", value: 'Add category', click: function () {
+                  const values = $$(ids.adminForm)
+                  console.log(values.value);
+                  collectionCategories.add({
+                     value: values.value
+                  });
+                  $$(ids.adminForm).clear()
                }
             },
          ]
       },
-
    ]
 }
 
