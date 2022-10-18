@@ -1,5 +1,7 @@
 import { ids, getRandomItem } from './../helpers.js'
 import { countries, names } from '../../test_data/countries.js'
+import { collectionUsers } from './../helpers.js'
+
 
 const filter = {
    view: 'toolbar',
@@ -49,7 +51,6 @@ const list = {
    editor: 'text',
    editValue: 'name',
    editaction: 'dblclick',
-   url: './test_data/usersdata.js',
    content: 'textFilter',
 
    select: true,

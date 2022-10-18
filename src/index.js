@@ -1,8 +1,10 @@
-import { ids, getRandomItem } from './helpers.js'
+import { ids, getRandomItem, collectionCategories } from './helpers.js'
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
 import { countries, names } from './../test_data/countries.js'
+import { collectionUsers } from './helpers.js'
+import { categoriesTable, admin } from './modules/admin.js'
 
 
 const label = {
@@ -56,7 +58,7 @@ const main = {
       { id: ids.multiviewDashboard, cols: [dashboard, form] },
       { id: ids.multiviewUsers, rows: [filter, list, chart] },
       { id: ids.multiviewProducts, rows: [treetable] },
-      { id: ids.multiviewAdmin, rows: [{}] }
+      { id: ids.multiviewAdmin, rows: [admin] }
    ]
 }
 
@@ -154,6 +156,13 @@ $$(ids.usersChart).sync($$(ids.usersList), function () {
    });
 });
 
+
+$$(ids.dashboardTable).sync(collectionCategories)
+
+$$(ids.usersList).sync(collectionUsers)
+
+$$(ids.adminTable).sync(collectionCategories)
+// $$(ids.adminForm).bind($$(ids.adminTable))
 
 
 

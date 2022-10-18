@@ -1,5 +1,5 @@
 import { categories } from '../../test_data/categories.js';
-import { ids, getRandomItem } from './../helpers.js'
+import { ids, getRandomItem, collectionCategories } from './../helpers.js'
 const segment = {
    rows: [
       {
@@ -31,7 +31,7 @@ const datatable = {
       { id: 'rank', header: '#', css: 'rank', width: 40, sort: 'int' },
       { id: 'title', header: ['Film title', { content: 'textFilter' }], fillspace: true, sort: 'string' },
 
-      { id: 'categoryId', header: ['Category', { content: 'selectFilter' }], editor: 'select', options: categories, width: 80 },
+      { id: 'categoryId', header: ['Category', { content: 'selectFilter' }], editor: 'select', collection: collectionCategories, width: 80 },
       { id: 'rating', header: ['Rating', { content: 'textFilter' }], sort: 'string', width: 80 },
       { id: 'votes', header: ['Votes', { content: 'textFilter' }], width: 80, sort: 'int', tooltip: '' },
       { id: 'year', header: 'Year', width: 80, tooltip: '' },
@@ -75,7 +75,12 @@ const form = {
 
                { view: 'text', label: 'Year', name: 'year', invalidMessage: 'Incorrect year' },
                { view: 'text', label: 'Rating', name: 'rating', invalidMessage: 'Rating is empty' },
-               { view: 'text', label: 'Votes', name: 'votes', invalidMessage: 'Incorrect votes' }
+               { view: 'text', label: 'Votes', name: 'votes', invalidMessage: 'Incorrect votes' },
+               {
+                  view: 'richselect',
+                  label: 'Category', name: 'category',
+                  value: 1, options: collectionCategories
+               }
             ]
          }
       },

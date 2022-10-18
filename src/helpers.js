@@ -1,3 +1,6 @@
+import { categories } from "../test_data/categories.js";
+import { users } from "../test_data/usersdata.js";
+
 const ids = {
    multiviewDashboard: 'Dashboard',
    multiviewUsers: 'Users',
@@ -11,6 +14,8 @@ const ids = {
    usersList: 'editlist',
    usersInputList: 'text',
    usersChart: 'chart',
+   adminTable: 'categoriesTable',
+   adminForm: 'formAdmin'
 
 }
 
@@ -20,4 +25,14 @@ function getRandomItem(array) {
    return item;
 }
 
-export { ids, getRandomItem }
+const collectionCategories = new webix.DataCollection({
+   data: categories
+});
+
+const collectionUsers = new webix.DataCollection({
+   data: users
+});
+
+
+
+export { ids, getRandomItem, collectionCategories, collectionUsers }
