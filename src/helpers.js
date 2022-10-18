@@ -1,5 +1,5 @@
-import { categories } from "../test_data/categories.js";
-import { users } from "../test_data/usersdata.js";
+import { categories } from '../test_data/categories.js';
+import { users } from '../test_data/usersdata.js';
 
 const ids = {
    multiviewDashboard: 'Dashboard',

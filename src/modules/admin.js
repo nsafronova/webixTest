@@ -1,4 +1,4 @@
-import { ids, collectionCategories } from "../helpers.js"
+import { ids, collectionCategories } from '../helpers.js'
 
 const categoriesTable = {
    id: ids.adminTable,
@@ -8,7 +8,7 @@ const categoriesTable = {
    editable: true,
    hover: 'myhover',
    columns: [
-      { id: 'value', view: 'richselect', header: 'Category', editor: "text" },
+      { id: 'value', view: 'richselect', header: 'Category', editor: 'text' },
       {
          view: 'button', template: '{common.trashIcon()}'
       }
@@ -28,11 +28,12 @@ const adminForm = {
    rows: [
       { view: 'text', name: 'value' },
       {
-         view: "toolbar", cols: [
+         view: 'toolbar', cols: [
             {
-               view: "button", value: 'Add category', click: function () {
-                  const values = $$(ids.adminForm)
-                  console.log(values.value);
+               view: 'button', value: 'Add category', click: function () {
+                  const form = $$(ids.adminForm);
+                  const values = form.getValues();
+                  console.log(values);
                   collectionCategories.add({
                      value: values.value
                   });
