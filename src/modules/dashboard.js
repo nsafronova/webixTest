@@ -78,8 +78,7 @@ const form = {
                { view: 'text', label: 'Votes', name: 'votes', invalidMessage: 'Incorrect votes' },
                {
                   view: 'richselect',
-                  label: 'Category', name: 'categoryId',
-                  value: 1, options: collectionCategories
+                  label: 'Category', name: 'categoryId', options: collectionCategories
                }
             ]
          }

@@ -158,8 +158,6 @@ $$(ids.usersList).sync(collectionUsers)
 
 $$(ids.adminForm).bind($$(ids.adminTable))
 
-$$(ids.adminTable).sync(collectionCategories)
-
 
 
 
