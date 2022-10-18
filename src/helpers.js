@@ -21,7 +21,7 @@ const ids = {
 
 function getRandomItem(array) {
    const randomIndex = Math.floor(Math.random() * array.length);
-   let item = array[randomIndex];
+   const item = array[randomIndex];
    return item;
 }
 
