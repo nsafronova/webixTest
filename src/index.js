@@ -1,10 +1,9 @@
-import { ids, getRandomItem, collectionCategories } from './helpers.js'
+import { ids, collectionCategories } from './helpers.js'
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
-import { countries, names } from './../test_data/countries.js'
 import { collectionUsers } from './helpers.js'
-import { categoriesTable, admin } from './modules/admin.js'
+import { admin } from './modules/admin.js'
 
 
 const label = {

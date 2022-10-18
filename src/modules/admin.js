@@ -1,6 +1,4 @@
 import { ids, collectionCategories } from "../helpers.js"
-// import
-
 
 const categoriesTable = {
    id: ids.adminTable,
@@ -9,7 +7,6 @@ const categoriesTable = {
    select: true,
    editable: true,
    hover: 'myhover',
-   // data: collectionCategories,
    columns: [
       { id: 'value', view: 'richselect', header: 'Category', editor: "text" },
       {
