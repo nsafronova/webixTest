@@ -141,24 +141,28 @@ $$(ids.dashboardTable).registerFilter(
    }
 );
 
-$$(ids.usersChart).sync($$(ids.usersList), function () {
-   $$(ids.usersChart).group({
+$$(ids.usersList).sync(collectionUsers)
+
+$$(ids.usersChart).sync(collectionUsers)
+
+$$(ids.usersChart).attachEvent('onAfterSync', function () {
+   this.group({
       by: 'country',
       map: {
          name: ['name', 'count']
       }
-   });
-});
+   })
+})
 
 $$(ids.sidebarList).select(ids.multiviewDashboard);
 
 $$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
-$$(ids.usersList).sync(collectionUsers)
 
 $$(ids.adminForm).bind($$(ids.adminTable))
 
 
-
-
-
+$$(ids.dashboardTable).attachEvent('onAfterAdd', function (id) {
+   $$(ids.dashboardTable).select(id)
+   $$(ids.dashboardTable).showItem(id)
+})

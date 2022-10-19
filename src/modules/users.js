@@ -34,6 +34,7 @@ const filter = {
 
    ],
 
+
 }
 
 
@@ -66,7 +67,8 @@ const list = {
          if (obj.age < 26)
             obj.$css = 'highlight';
       },
-   }
+   },
+
 }
 
 const chart = {
