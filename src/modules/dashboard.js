@@ -123,7 +123,8 @@ const form = {
       },
       rating: webix.rules.isNotEmpty && function (value) {
          return value > 0;
-      }
+      },
+      value: webix.rules.isNotEmpty
    },
 };
 

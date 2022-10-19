@@ -27,11 +27,11 @@ const adminForm = {
    view: 'form',
    id: ids.adminForm,
    cols: [
-      { view: 'text', name: 'value' },
+      { view: 'text', name: 'value', },
       {
          view: 'toolbar', cols: [
             {
-               view: 'button', value: 'Add category', width: 300, invalidMessage: 'Category is empty', click: function () {
+               view: 'button', value: 'Add category', width: 300, click: function () {
                   const form = $$(ids.adminForm);
                   const values = form.getValues();
                   if (form.validate())
