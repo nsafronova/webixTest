@@ -1,7 +1,9 @@
-import { ids } from './helpers.js'
+import { ids, collectionCategories } from './helpers.js'
 import { dashboard, form } from './modules/dashboard.js'
 import { treetable } from './modules/products.js'
 import { filter, list, chart } from './modules/users.js'
+import { collectionUsers } from './helpers.js'
+import { admin } from './modules/admin.js'
 
 
 const label = {
@@ -55,7 +57,7 @@ const main = {
       { id: ids.multiviewDashboard, cols: [dashboard, form] },
       { id: ids.multiviewUsers, rows: [filter, list, chart] },
       { id: ids.multiviewProducts, rows: [treetable] },
-      { id: ids.multiviewAdmin, rows: [{}] }
+      { id: ids.multiviewAdmin, rows: [admin] }
    ]
 }
 
@@ -115,11 +117,6 @@ $$(ids.usersInputList).attachEvent('onTimedKeyPress', function () {
    })
 });
 
-$$(ids.sidebarList).select(ids.multiviewDashboard);
-
-$$(ids.dashboardForm).bind($$(ids.dashboardTable))
-
-
 $$(ids.dashboardTable).registerFilter(
    $$(ids.dashboardSelector),
    {
@@ -144,15 +141,26 @@ $$(ids.dashboardTable).registerFilter(
    }
 );
 
-$$(ids.usersChart).sync($$(ids.usersList), function () {
-   $$(ids.usersChart).group({
+$$(ids.usersList).sync(collectionUsers)
+
+$$(ids.usersChart).sync(collectionUsers, function () {
+   this.group({
       by: 'country',
       map: {
          name: ['name', 'count']
       }
-   });
-});
+   })
+})
+
+$$(ids.sidebarList).select(ids.multiviewDashboard);
+
+$$(ids.dashboardForm).bind($$(ids.dashboardTable))
 
 
+$$(ids.adminForm).bind($$(ids.adminTable))
 
 
+$$(ids.dashboardTable).attachEvent('onAfterAdd', function (id) {
+   $$(ids.dashboardTable).select(id)
+   $$(ids.dashboardTable).showItem(id)
+})

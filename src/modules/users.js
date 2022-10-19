@@ -1,4 +1,4 @@
-import { ids, getRandomItem } from './../helpers.js'
+import { ids, getRandomItem, collectionUsers } from './../helpers.js'
 import { countries, names } from '../../test_data/countries.js'
 
 const filter = {
@@ -25,7 +25,7 @@ const filter = {
                      'age': Math.floor(Math.random() * 80) + 10,
                      'country': getRandomItem(countries).value
                   }
-                  $$(ids.usersList).add(userObj)
+                  $$(collectionUsers).add(userObj)
                }
             }
 
@@ -33,6 +33,7 @@ const filter = {
       }
 
    ],
+
 
 }
 
@@ -49,13 +50,12 @@ const list = {
    editor: 'text',
    editValue: 'name',
    editaction: 'dblclick',
-   url: './test_data/usersdata.js',
    content: 'textFilter',
 
    select: true,
    onClick: {
       removeBtn: function (e, id) {
-         this.remove(id);
+         collectionUsers.remove(id);
          return false;
       }
    },
@@ -67,7 +67,8 @@ const list = {
          if (obj.age < 26)
             obj.$css = 'highlight';
       },
-   }
+   },
+
 }
 
 const chart = {
