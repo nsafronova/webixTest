@@ -78,7 +78,7 @@ const form = {
                { view: 'text', label: 'Votes', name: 'votes', invalidMessage: 'Incorrect votes' },
                {
                   view: 'richselect',
-                  label: 'Category', name: 'categoryId', options: collectionCategories, invalidMessage: 'Category is empty'
+                  label: 'Category', name: 'categoryId', options: collectionCategories
                }
             ]
          }
@@ -123,8 +123,7 @@ const form = {
       },
       rating: webix.rules.isNotEmpty && function (value) {
          return value > 0;
-      },
-      // categoryId: webix.rules.isNotEmpty
+      }
    },
 };
 
