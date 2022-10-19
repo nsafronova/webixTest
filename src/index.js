@@ -143,9 +143,7 @@ $$(ids.dashboardTable).registerFilter(
 
 $$(ids.usersList).sync(collectionUsers)
 
-$$(ids.usersChart).sync(collectionUsers)
-
-$$(ids.usersChart).attachEvent('onAfterSync', function () {
+$$(ids.usersChart).sync(collectionUsers, function () {
    this.group({
       by: 'country',
       map: {
